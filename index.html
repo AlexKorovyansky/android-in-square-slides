@@ -1,0 +1,460 @@
+<!-- GDG[x] Glider based on Google IO 2012/2013 HTML5 Slide Template Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="chrome=1">
+        <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+        <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+        <!--This one seems to work all the time, but really small on ipad-->
+        <!--<meta name="viewport" content="initial-scale=0.4">-->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" media="all" href="theme/css/default.css">
+        <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+        <base target="_blank">
+        <!-- This amazingness opens all links in a new tab. -->
+        <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+    </head>
+    
+    <body style="opacity: 0">
+        <slides class="layout-widescreen">
+            
+            
+            <slide class="fill nobackground">
+                <article class="flexbox vcenter">
+                    <img src="images/content/devfest_season.png" style="width: 600px;">
+                </article>
+            </slide>
+            
+            
+            <slide class="title-slide segue nobackground">
+                <aside class="gdbar">
+                    <img src="images/gdg_icon_128.png">
+                </aside>
+                <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+                <hgroup class="auto-fadein">
+                    <h1 data-config-title>
+                        <!-- populated from slide_config.json -->
+                    </h1>
+                    <h2 data-config-subtitle>
+                        <!-- populated from slide_config.json -->
+                    </h2>
+                    <p data-config-presenter>
+                        <!-- populated from slide_config.json -->
+                    </p>
+                </hgroup>
+            </slide>
+            
+            
+            <slide class="fill nobackground" style="background-image: url(images/content/cute_cat.jpg)">
+                <hgroup>
+                    <h2 class="white shadow">[Story...]</h2>
+                </hgroup>
+                <footer class="source white">www.freegreatpicture.com</footer>
+            </slide>
+
+            <slide class="fill nobackground">
+                <h2>Efficiency of Android Experts</h2>
+                <article class="flexbox vcenter">
+                    <img src="images/content/eff_2012.png" style=" width: 600px;">
+                </article>
+            </slide>
+            
+            <slide class="segue nobackground fill" style="background-image: url(images/content/android_lawn.jpg) !important;">
+                <div class="overlay" style="z-index:0;"></div>
+                <aside class="gdbar">
+                  <img src="images/gdg_icon_128.png">
+              </aside>
+              <hgroup class="auto-fadein" style="z-index:2;">
+                  <h2>#1 - News from Mountain View</h2>
+                  <h3>Madic updates of Android SDK Tools &amp; APIs</h3>
+              </hgroup>
+            </slide>
+
+            <slide>
+                <hgroup>
+                  <h2>A lot of things to know about</h2>
+                </hgroup>
+                <article>
+                  <ul>
+                      <li><a href="http://developer.android.com/about/versions/android-4.3.html">Android 4.3, </a><a href="http://developer.android.com/about/versions/kitkat.html">4.4 API Updates</a></li>
+                      <li><a href="http://developers.google.com/events/io/sessions/324603352">Android Studio</a> + <a href="http://developers.google.com/events/io/sessions/325236644">New Build System</a></li>
+                      <li><a href="http://developer.android.com/google/play-services/index.html">Google Play Services</a></li>
+                      <ul>
+                        <li><a href="https://developer.android.com/google/play-services/location.html">Fused Locations + Activity Recognition</a></li>
+                        <li><a href="https://developers.google.com/maps/documentation/android/">Google Maps v2</a></li>
+                        <li><a href="https://developers.google.com/games/services/">Google Play Game Services</a></li>
+                        <li><a href="https://developers.google.com/events/io/sessions/324893448">Google Cloud Messaging</a></li>
+                        <li>...</li>
+                      </ul>
+                      <li><a href="http://support.google.com/googleplay/android-developer/answer/3131213?hl=en">Beta-testing and staged rollouts</a></li>
+                      <li><a href="https://www.youtube.com/watch?v=6TGgYqfJnyc">ActionBarCompat</a></li>
+                      <li><a hred="https://developers.google.com/events/io/sessions/325304728">Volley</a></li>
+                      <li><a href="https://developers.google.com/events/io/sessions/333508149">Cloud Backends</a></li>
+                      <li>...</li>
+                  </ul>
+                </article>
+            </slide>
+
+            <slide class="fill nobackground" style="background-image: url(images/content/android_studio.png)">
+                <hgroup>
+                    <h2 class="white shadow">Android Studio + New Build System</h2>
+                </hgroup>
+            </slide>
+
+            <slide>
+              <hgroup>
+                  <h2>Why Gradle is cool?</h2>
+              </hgroup>
+              <article>
+                    <pre class="prettyprint" data-lang="build.gradle">
+buildscript {
+    repositories { mavenCentral() }
+    dependencies { classpath 'com.android.tools.build:gradle:0.5.+' }
+}
+
+apply plugin: 'android'
+
+android {
+    compileSdkVersion 17
+    buildToolsVersion: '17.0.0'
+}
+                    </pre>
+              </article>
+            </slide>
+
+            <slide>
+              <hgroup>
+                  <h2>Why Gradle is awesome?</h2>
+              </hgroup>
+              <article>
+                    <pre class="prettyprint" data-lang="build.gradle">
+
+def vMajor = 3
+def vMinor = 0
+def vPatch = 0
+def vBuild = 0 // bump for dogfood builds, public betas, etc.
+
+android {
+      defaultConfig {
+        versionCode vMajor*10000 + vMinor*1000 + vPatch*100 + vBuild
+        versionName "${vMajor}.${vMinor}.${vPatch}"
+      }
+}
+                    </pre>
+              </article>
+            </slide>
+
+            <slide>
+                          <hgroup>
+                              <h2>What's new with Gradle?</h2>
+                          </hgroup>
+                          <article>
+                                <pre class="prettyprint" data-lang="build.gradle">
+productFlavors {
+    devfest {
+        packageName 'com.alexkorovyansky.twitterchampions.devfest'
+    }
+
+    happydev {
+        packageName 'com.alexkorovyansky.twitterchampions.devfest'
+    }
+}
+                    </pre>
+              </article>
+            </slide>
+
+            <slide class="fill nobackground" style="background-image: url(images/content/fused_locations.jpg)">
+                <hgroup>
+                    <h2 class="white shadow">Fused Locations + Activity Recognition</h2>
+                </hgroup>
+            </slide>
+
+            <slide class="fill nobackground" style="background-image: url(images/content/stagged_rollouts.jpg)">
+                <hgroup>
+                    <h2 class="white shadow">Beta-testing and Stagged Rollouts</h2>
+                </hgroup>
+            </slide>
+
+            <slide>
+                <hgroup>
+                  <h2>Enjoy watching and reading</h2>
+                </hgroup>
+                <article>
+                  <ul>
+                      <li><a href="https://developers.google.com/events/io/">Google I/O 2013</a></li>
+                      <li><a href="https://plus.google.com/+AndroidDevelopers/posts">Android Developers on G+</a></li>
+                      <li><a href="http://tools.android.com/recent">Android Tools Project</a></li>
+                      <li><a href="https://www.youtube.com/playlist?list=PLxLa2tjhVPOZ9KMqanm12_xPDBjKPZWgM">Dev.Bytes</a></li>
+                      <li><a href="https://www.youtube.com/playlist?list=PLWz5rJ2EKKc8j2B95zGMb8muZvrIy-wcF">Android Design in Action</a></li>
+                      <li><a href="http://developer.android.com/about/versions/android-4.3.html">Android 4.3, </a><a href="http://developer.android.com/about/versions/kitkat.html">4.4 APIs</a></li>
+                      <li>...</li>
+                  </ul>
+                </article>
+            </slide>
+
+            <slide class="segue nobackground fill" style="background-image: url(images/content/milky_way.jpg) !important;">
+                <div class="overlay" style="z-index:0;"></div>
+                <aside class="gdbar">
+                  <img src="images/gdg_icon_128.png">
+              </aside>
+              <hgroup class="auto-fadein" style="z-index:2;">
+                  <h2>#2 - Magic around the World</h2>
+                  <h3>Open Source Libs</h3>
+              </hgroup>
+            </slide>
+
+            <slide class="fill nobackground" style="background-image: url(images/content/github_android.png)">
+                <article class="build flexbox vcenter">
+                      <h2 class="white shadow fade_background">Search Query = "Android"</h2>
+                      <h2 class="white shadow fade_background">How many are available?</h2>
+                      <h2 class="white shadow fade_background">How many has > 1000 stars?</h2>
+              </article>
+              <footer class="source"><a href="http://github.com/search" style="color:darkgrey;">Check on GitHub</a></footer>
+            </slide>
+
+            <slide>
+                <hgroup>
+                    <h2>Open Source Power</h2>
+                    <h3>&nbsp;</h3>
+                </hgroup>
+                <article class="flexbox vcenter">
+                    <img src="images/content/open_source_chart.png" style=" height: 450px; margin-top: -150px;">
+                    <footer class="source">source: <a href="http://www.blackducksoftware.com/news/releases/open-source-mobile-project-growth-continues-gain-momentum" style="color:darkgrey;">http://www.blackducksoftware.com/</a></footer>
+                </article>
+            </slide>
+
+            <slide>
+              <article>
+                <iframe data-src="http://square.github.io/picasso/"></iframe>
+              </article>
+            </slide>
+
+            <slide>
+              <article>
+                <iframe data-src="http://square.github.io/otto/"></iframe>
+              </article>
+            </slide>
+
+            <slide>
+              <article>
+                <iframe data-src="http://square.github.io/retrofit/"></iframe>
+              </article>
+            </slide>
+
+            <slide>
+              <article>
+                <iframe data-src="http://square.github.io/dagger/"></iframe>
+              </article>
+            </slide>
+
+            <slide class="fill nobackground" style="background-image: url(images/content/square_open_source.png)">
+            </slide>
+
+            <slide>
+                <article class="flexbox vcenter">
+                  <img src="images/content/square_record.png">
+                  <footer class="source">source: <a href="https://twitter.com/SquareEng/status/385079101519691776">https://twitter.com/SquareEng/status/385079101519691776</a></footer>
+                </article>
+            </slide>
+
+            <slide>
+                <hgroup>
+                  <h2>Enjoy the magic</h2>
+                </hgroup>
+                <article>
+                  <ul>
+                      <li><a href="http://www.infoq.com/presentations/Android-Squared">Who Square are?</a></li>
+                      <li><a href="http://corner.squareup.com/">Square Engineering Blog</a></li>
+                      <li><a href="http://square.github.io/">Square Open Source</a></li>
+                      <li><a href="http://plus.google.com/communities/109244258569782858265">G+ Community</a></li>
+                      <li><a href="http://www.infoq.com/presentations/Android-App">Android app anatomy</a></li>
+                      <li><a href="http://www.infoq.com/presentations/Dagger">Introduction to Dagger</a></li>
+                      <li>...</li>
+                  </ul>
+                </article>
+            </slide>
+
+          <slide class="segue nobackground fill" style="background-image: url(images/content/magic.jpg) !important;">
+                <div class="overlay" style="z-index:0;"></div>
+                <aside class="gdbar">
+                  <img src="images/gdg_icon_128.png">
+              </aside>
+              <hgroup class="auto-fadein" style="z-index:2;">
+                  <h2>#3 - Magic around the World</h2>
+                  <h3>Free 3rd Party Tools</h3>
+              </hgroup>
+            </slide>
+
+           <slide class="fill nobackground" style="background-image: url(images/content/genymotion.png)">
+              <footer class="source"><a href="http://www.genymotion.com" style="color:darkgrey;">http://www.genymotion.com</a></footer>
+            </slide>
+
+            <slide class="fill nobackground" style="background-image: url(images/content/testflight.png)">
+              <footer class="source"><a href="https://testflightapp.com/android/" style="color:darkgrey;">https://testflightapp.com/android/</a></footer>
+            </slide>
+
+            <slide class="fill nobackground" style="background-image: url(images/content/crashlytics.png)">
+            </slide>
+
+
+            <slide class="segue nobackground fill" style="background-image: url(images/content/conclusions.JPG) !important;">
+                <div class="overlay" style="z-index:0;"></div>
+                <aside class="gdbar">
+                  <img src="images/gdg_icon_128.png">
+              </aside>
+              <hgroup class="auto-fadein" style="z-index:2;">
+                  <h2>Conclusions</h2>
+                  <h3>Useful to know about</h3>
+              </hgroup>
+            </slide>
+
+            <slide class="fill nobackground">
+                <h2>Efficiency of Experts - 2013</h2>
+                <article class="flexbox vcenter">
+                    <img src="images/content/eff_2013.png" style=" width: 700px;">
+                </article>
+            </slide>
+            
+            <slide class="fill nobackground">
+                <h2>Student, who reads books only on Russian</h2>
+                <article class="flexbox vcenter">
+                    <img src="images/content/eff_2013_R.png" style=" width: 700px;">
+                </article>
+            </slide>
+
+            <slide class="fill nobackground">
+                <h2>Student, who knows about last things</h2>
+                <article class="flexbox vcenter">
+                    <img src="images/content/eff_2013_+.png" style=" width: 700px;">
+                </article>
+            </slide>
+
+            <slide class="fill nobackground">
+                <h2>Expert, who relies only to standard things</h2>
+                <article class="flexbox vcenter">
+                    <img src="images/content/eff_2013_E.png" style=" width: 700px;">
+                </article>
+            </slide>
+
+            <slide class="fill nobackground">
+                <h2>Company, which wants to earn a lot of money</h2>
+                <article class="flexbox vcenter">
+                    <img src="images/content/eff_2013_C.png" style=" width: 700px;">
+                </article>
+            </slide>
+
+            <slide class="segue nobackground fill" style="background-image: url(images/content/community_power.jpg) !important;">
+                <div class="overlay" style="z-index:0;"></div>
+                <aside class="gdbar">
+                  <img src="images/gdg_icon_128.png">
+              </aside>
+              <hgroup class="auto-fadein" style="z-index:2;">
+                  <h2>Community Power</h2>
+                  <h3>Magic way to grow</h3>
+              </hgroup>
+            </slide>
+
+            <slide>
+                <hgroup>
+                  <h2>Join to the project [Made in GDG Omsk]</h2>
+                </hgroup>
+                <article>
+                  <ul>
+                      <li>Mb-Lock</li>
+                      <li>Terapevt</li>
+                      <li>Toad learner</li>
+                      <li>Weather Notification</li>
+                      <li>Mixup</li>
+                      <li>My Avangard / Fun Burst</li>
+                      <li>&nbsp;</li>
+                      <li>...<b>Or create yourself!</b></li>
+                      <li>&nbsp;</li>
+                      <li><a href="http://www.gdgomsk.org">Start here</a></li>
+                  </ul>
+                      
+                  <footer class="source"><a href="http://gdgomsk.org" style="color:darkgrey;">Start Now</a></footer>
+                </article>
+            </slide>
+
+            <slide class="segue nobackground fill" style="background-image: url(images/content/cute_cat.jpg) !important;">
+                <div class="overlay" style="z-index:0;"></div>
+                <aside class="gdbar">
+                  <img src="images/gdg_icon_128.png">
+              </aside>
+              <hgroup class="auto-fadein" style="z-index:2;">
+                  <h2>One more thing...</h2>
+                  <h3>&nbsp;</h3>
+              </hgroup>
+            </slide>
+            
+            
+             <slide class="nobackground fill" style="background-image: url(images/content/cute_cat.jpg) !important;">
+                <hgroup>
+
+                </hgroup>
+                <article class="build flexbox vcenter">
+                      <h2 class="white shadow fade_background">KEEP CALM</h2>
+                      <h2 class="white shadow fade_background">AND</h2>
+                      <h2 class="white shadow fade_background">HAVE FUN</h2>
+               </article>
+            </slide>
+
+            <slide class="thank-you-slide segue nobackground">
+                <aside class="gdbar right">
+                    <img src="images/gdg_icon_128.png">
+                </aside>
+                <article class="flexbox vleft auto-fadein">
+                    <h2 style="text-shadow: 2px 2px 2px rgba(150, 150, 150, 1);">Thank You!</h2>
+                    <p>If you have questions, feel free to ask me</a></p>
+                </article>
+                <p class="auto-fadein" data-config-contact>
+                    <!-- populated from slide_config.json -->
+                </p>
+            </slide>
+            
+            
+            <slide class="logoslide dark nobackground" hidden>
+                <article class="flexbox vcenter">
+                    <span>
+                        <img src="images/gdg_logo_white.png">
+                    </span>
+                </article>
+            </slide>
+            <slide class="backdrop"></slide>
+        
+        
+        </slides>
+        
+        
+        <script>
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-44230759-2']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+                var ga = document.createElement('script');
+                ga.type = 'text/javascript';
+                ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+        <!--[if IE]>
+            <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+            <script>
+                CFInstall.check({
+                    mode: 'overlay'
+                });
+            </script>
+        <![endif]-->
+    </body>
+
+</html>
