@@ -2,7 +2,7 @@ var SLIDE_CONFIG = {
   // Slide settings
   settings: {
     title: 'Android in Square',
-    subtitle: 'How you can be magicaly effective in 2013',
+    subtitle: 'How you can be magically effective in 2013',
     eventInfo: {
       title: 'GDG DevFest Omsk',
       date: '02/11/2013'
